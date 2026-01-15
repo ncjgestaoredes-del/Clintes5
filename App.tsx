@@ -18,7 +18,7 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContaine
 import { getDebtStrategy } from './services/geminiService';
 
 // SUBSTITUA POR SUA URL DO RENDER APÓS O DEPLOY
-const API_URL = 'https://seu-projeto-backend.onrender.com';
+const API_URL = 'https://clientesresgistro.onrender.com';
 
 const App: React.FC = () => {
   const [activeTab, setActiveTab] = useState<'dashboard' | 'customers' | 'history'>('dashboard');
