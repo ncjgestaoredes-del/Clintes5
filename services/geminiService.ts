@@ -1,9 +1,13 @@
 
-import { GoogleGenAI, Type } from "@google/genai";
+import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.API_KEY || '' });
+// Initialize with process.env.API_KEY as per guidelines
+const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
 
 export const getDebtStrategy = async (customer: any, transactions: any[]) => {
+  // Check for API key existence (process.env.API_KEY is handled externally)
+  if (!process.env.API_KEY) return "Análise de IA indisponível (Chave não configurada).";
+  
   try {
     const response = await ai.models.generateContent({
       model: "gemini-3-flash-preview",
@@ -13,10 +17,8 @@ export const getDebtStrategy = async (customer: any, transactions: any[]) => {
         Total Debt: R$ ${customer.totalDebt}
         History: ${JSON.stringify(transactions)}
       `,
-      config: {
-        systemInstruction: "Você é um consultor financeiro especialista em recuperação de crédito amigável. Forneça conselhos em Português do Brasil.",
-      },
     });
+    // Use .text property instead of .text()
     return response.text;
   } catch (error) {
     console.error("Gemini Error:", error);

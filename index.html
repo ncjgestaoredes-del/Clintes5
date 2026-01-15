@@ -5,20 +5,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DebtManager Pro</title>
+    <!-- Tailwind JIT para Produção Rápida -->
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Babel para transpilar TSX no navegador (Resolve erro de MIME type no GitHub Pages) -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
     <style>
         body { font-family: 'Inter', sans-serif; margin: 0; padding: 0; }
         #root { min-height: 100vh; }
     </style>
-<script type="importmap">
+
+    <script type="importmap">
 {
   "imports": {
+    "react": "https://esm.sh/react@19.0.0",
     "react-dom": "https://esm.sh/react-dom@19.0.0",
     "react-dom/client": "https://esm.sh/react-dom@19.0.0/client",
-    "react": "https://esm.sh/react@19.0.0",
     "recharts": "https://esm.sh/recharts@3.0.0-beta.10",
     "lucide-react": "https://esm.sh/lucide-react@0.460.0",
     "@google/genai": "https://esm.sh/@google/genai@0.2.1",
@@ -32,8 +38,11 @@
 </head>
 <body class="bg-slate-50 text-slate-900">
     <div id="root"></div>
-    <!-- No GitHub Pages, o caminho deve ser relativo ao domínio ou subdiretório -->
-    <script type="module" src="./index.tsx"></script>
+
+    <!-- Carregamos o App.tsx e index.tsx via Babel -->
+    <!-- Definimos como text/babel para o Babel processar o TypeScript/React -->
+    <script type="text/babel" data-type="module" data-presets="react,typescript" src="./App.tsx"></script>
+    <script type="text/babel" data-type="module" data-presets="react,typescript" src="./index.tsx"></script>
 <script type="module" src="/index.tsx"></script>
 </body>
 </html>
